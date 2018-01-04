@@ -1,3 +1,5 @@
+package com.seaflying.Sendmail;
+
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
@@ -51,7 +53,7 @@ class Authentication extends Authenticator{
 public class Sendmail {
 	
 	public static void main(String[] args) throws Exception{
-		 // 收件人电子邮箱
+		 // 鏀朵欢浜虹數瀛愰偖绠�
 		String from="",passwd="",smtp="",subject="",content="";
 		List<String> to = new ArrayList<String>() ;
 		List<String> cc = new ArrayList<String>() ;
@@ -122,23 +124,23 @@ public class Sendmail {
 
 	      Properties prop_session = new Properties();
 	      	    
-	      prop_session.setProperty("mail.transport.protocol", "smtp");   // 使用的协议（JavaMail规范要求）
-		  prop_session.setProperty("mail.smtp.host", smtp);   // 发件人的邮箱的 SMTP 服务器地址
+	      prop_session.setProperty("mail.transport.protocol", "smtp");   // 浣跨敤鐨勫崗璁紙JavaMail瑙勮寖瑕佹眰锛�
+		  prop_session.setProperty("mail.smtp.host", smtp);   // 鍙戜欢浜虹殑閭鐨� SMTP 鏈嶅姟鍣ㄥ湴鍧�
 	      prop_session.put("mail.smtp.auth", "true"); 
 	      
 	      Authentication auth = new Authentication(from, passwd);
-	      // 获取默认session对象
+	      // 鑾峰彇榛樿session瀵硅薄
 	      Session session = Session.getDefaultInstance(prop_session,auth);
 	      session.setDebug(true);       
 	 
 	      try{
-	         // 创建默认的 MimeMessage 对象
+	         // 鍒涘缓榛樿鐨� MimeMessage 瀵硅薄
 	         MimeMessage message = new MimeMessage(session);
 	 
-	         // Set From: 头部头字段
+	         // Set From: 澶撮儴澶村瓧娈�
 	         message.setFrom(new InternetAddress(from));
 	 
-	         // Set To: 头部头字段
+	         // Set To: 澶撮儴澶村瓧娈�
 	         for(int i = 0; i < n_to; i++) {
 	        	 message.addRecipient(Message.RecipientType.TO, new InternetAddress(to.get(i)));
 	         } 
@@ -151,9 +153,9 @@ public class Sendmail {
 		         message.addRecipient(Message.RecipientType.BCC, new InternetAddress(to.get(i)));
 	         } 
 	         
-	         // Set Subject: 头部头字段
+	         // Set Subject: 澶撮儴澶村瓧娈�
 	         message.setSubject(subject);	 
-	         // 设置消息体
+	         // 璁剧疆娑堟伅浣�
 	         message.setContent(content, "text/html;charset=UTF-8");
 	         message.setSentDate(new Date());
 	         
@@ -161,7 +163,7 @@ public class Sendmail {
 	 
 	         Transport transport = session.getTransport();
 	         transport.connect(from, passwd);
-	         // 发送消息
+	         // 鍙戦�佹秷鎭�
 	         Transport.send(message,message.getAllRecipients());
 	         transport.close();
 	         
