@@ -3,7 +3,7 @@
   <groupId>com.seaflying</groupId>
   <artifactId>SendMail</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>sendmail</name>
+  <name>Sendmail</name>
   <dependencies>
   	<dependency>
   		<groupId>com.sun.mail</groupId>
